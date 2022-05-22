@@ -26,10 +26,22 @@
                 font-weight: 600;
                 font-size: 35px;
                 padding-top: 10px;
+                text-align: center;
+
             }
             .login-input{
                 margin: 10px 0;
                 font-size: 20px;
+                .custom-input-password{
+                    position: relative;
+
+                    i{
+                        position: absolute;
+                        right: 5px;
+                        top: 7px;
+                        cursor: pointer;
+                    }
+                }
             }
             .btn-login{
                 border-radius: 25px; 
