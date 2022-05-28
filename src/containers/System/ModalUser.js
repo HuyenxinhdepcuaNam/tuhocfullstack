@@ -11,6 +11,7 @@ class ModalUser extends Component {
             firstName: '',
             lastName: '',
             address: '',
+            isShowPassword: false
 
         }
     }
@@ -20,6 +21,11 @@ class ModalUser extends Component {
     }
     toggle = () => {
         this.props.toggleUserModal()
+    }
+    handleShowHidePassword = (event) => {
+        this.setState({
+            isShowPassword: !this.state.isShowPassword
+        })
     }
 
     handleOnChangeInput = (event, id) => {
@@ -73,10 +79,17 @@ class ModalUser extends Component {
                                 placeholder="Enter your email" />
                         </div>
                         <div className="input-container">
-                            <label>Password</label>
+                            <label>   Password     </label>
+
                             <input onChange={(event) => this.handleOnChangeInput(event, 'password')}
-                                type="password" value={this.state.password}
+                                type={this.state.isShowPassword === false ? "password" : 'text'}
+                                value={this.state.password}
                                 placeholder="Enter your password" />
+
+                            <span onClick={(event) => this.handleShowHidePassword(event)}>
+                                <i className={this.state.isShowPassword === false ? "fas fa-eye-slash" : "fas fa-eye"} ></i>
+                            </span>
+
                         </div>
                     </div>
                     <div className="modal-user-body">
