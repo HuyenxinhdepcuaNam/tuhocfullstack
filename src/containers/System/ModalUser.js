@@ -6,6 +6,12 @@ class ModalUser extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            address: '',
+
         }
     }
 
@@ -14,6 +20,36 @@ class ModalUser extends Component {
     }
     toggle = () => {
         this.props.toggleUserModal()
+    }
+
+    handleOnChangeInput = (event, id) => {
+        /**
+         * Syntax this.state.email === this.state['email']
+         */
+        let copyState = { ...this.state }
+        copyState[id] = event.target.value
+        this.setState({ ...copyState })
+    }
+    checkVadidateInput = () => {
+        let arrInput = ['email', 'password', 'firstName', 'lastName', 'address']
+        let isVlalid = true
+        for (let i = 0; i < arrInput.length; i++) {
+            if (!this.state[arrInput[i]]) {
+                isVlalid = false
+                alert(`Missing ${arrInput[i]}`)
+                break;
+            }
+        }
+
+        return isVlalid
+    }
+
+    handleAddNewUser = () => {
+        let isVlalid = this.checkVadidateInput()
+        if (isVlalid === true) {
+            //call api
+            this.props.createNewUser(this.state)
+        }
     }
 
     render() {
@@ -32,38 +68,52 @@ class ModalUser extends Component {
                     <div className="modal-user-body">
                         <div className="input-container">
                             <label>Email</label>
-                            <input type="email" placeholder="Enter your email" />
+                            <input onChange={(event) => this.handleOnChangeInput(event, 'email')}
+                                type="email" value={this.state.email}
+                                placeholder="Enter your email" />
                         </div>
                         <div className="input-container">
                             <label>Password</label>
-                            <input type="password" placeholder="Enter your password" />
+                            <input onChange={(event) => this.handleOnChangeInput(event, 'password')}
+                                type="password" value={this.state.password}
+                                placeholder="Enter your password" />
                         </div>
                     </div>
                     <div className="modal-user-body">
                         <div className="input-container">
                             <label>First name</label>
-                            <input type="text" placeholder="Enter your firstname" />
+                            <input onChange={(event) => this.handleOnChangeInput(event, 'firstName')}
+                                type="text" value={this.state.firstName}
+                                placeholder="Enter your firstname" />
                         </div>
                         <div className="input-container">
                             <label>Last name</label>
-                            <input type="text" placeholder="Enter your lastname" />
+                            <input onChange={(event) => this.handleOnChangeInput(event, 'lastName')}
+                                type="text" value={this.state.lastName}
+                                placeholder="Enter your lastname" />
                         </div>
                     </div>
                     <div className="modal-user-body">
-                        <div className="input-container" style={{width:"100%"}}>
+                        <div className="input-container" style={{ width: "100%" }}>
                             <label>Address</label>
-                            <input type="text" placeholder="Enter your address" />
+                            <input onChange={(event) => this.handleOnChangeInput(event, 'address')}
+                                type="text" value={this.state.address}
+                                placeholder="Enter your address" />
                         </div>
-                       
+
                     </div>
 
 
                 </ModalBody>
                 <ModalFooter>
-                    <Button className="px-3" color="primary" onClick={() => this.toggle()}>
-                        Save
+                    <Button
+                        className="px-3" color="primary"
+                        onClick={() => this.handleAddNewUser()}>
+                        Add new
                     </Button>{' '}
-                    <Button className="px-3" color="secodary" onClick={() => this.toggle()}>
+                    <Button
+                        className="px-3" color="secondary"
+                        onClick={() => this.toggle()}>
                         Close
                     </Button>
 

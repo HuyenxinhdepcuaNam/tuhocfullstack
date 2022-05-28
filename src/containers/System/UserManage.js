@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { getAllUsers } from '../../services/userService';
+import { getAllUsers, createNewUserService } from '../../services/userService';
 import ModalUser from './ModalUser';
 import './UserManage.scss'
 
@@ -17,6 +17,9 @@ class UserManage extends Component {
 
 
     async componentDidMount() {
+        await this.getAllUserFromReact()
+    }
+    getAllUserFromReact = async () => {
         let response = await getAllUsers('All')
         if (response && response.errCode === 0) {
             this.setState({
@@ -24,6 +27,7 @@ class UserManage extends Component {
             })
         }
     }
+
     handleAddNewUser = (event) => {
         this.setState({
             isOpenModalUser: true
@@ -36,6 +40,21 @@ class UserManage extends Component {
         })
     }
 
+    createNewUser = async (data) => {
+        try {
+            let res = await createNewUserService(data)
+            if (res && res.errCode !== 0) {
+                alert(res.errMessage)
+            } else {
+                this.getAllUserFromReact()
+                this.toggleUserModal()
+            }
+
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     render() {
         let arrUsers = this.state.arrUsers
         return (
@@ -43,6 +62,7 @@ class UserManage extends Component {
                 <ModalUser
                     isOpen={this.state.isOpenModalUser}
                     toggleUserModal={this.toggleUserModal}
+                    createNewUser={this.createNewUser}
                 />
                 <div className='title text-center'>Manage Users with Eric</div>
                 <div className='mx-3'>
