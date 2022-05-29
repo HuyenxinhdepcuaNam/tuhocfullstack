@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { getAllUsers, createNewUserService } from '../../services/userService';
+import { getAllUsers, createNewUserService, deleteUser } from '../../services/userService';
+import { emitter } from '../../utils/emitter';
 import ModalUser from './ModalUser';
 import './UserManage.scss'
 
@@ -46,12 +47,26 @@ class UserManage extends Component {
             if (res && res.errCode !== 0) {
                 alert(res.errMessage)
             } else {
-                this.getAllUserFromReact()
-                this.toggleUserModal()
+                await this.getAllUserFromReact()
+                this.setState({
+                    isOpenModalUser: false
+                })
+                emitter.emit('EVENT_CLEAR_MODAL_DATA', { 'id': 'your ID' })
+
             }
 
         } catch (e) {
             console.log(e)
+        }
+    }
+    handleDeleteUser = async (user) => {
+        let res = await deleteUser(user.id)
+        console.log('check', res)
+        if (res.errCode !== 0) {
+            alert(res.errMessage)
+        } else {
+            await this.getAllUserFromReact()
+
         }
     }
 
@@ -93,8 +108,13 @@ class UserManage extends Component {
                                             <td>{item.lastName}</td>
                                             <td>{item.address}</td>
                                             <td className='text-center'>
-                                                <button className='btn-edit'><i className="fas fa-pencil-alt"></i></button>
-                                                <button className='btn-delete'><i className="fas fa-trash-alt"></i></button>
+                                                <button className='btn-edit'>
+                                                    <i className="fas fa-pencil-alt"></i>
+                                                </button>
+                                                <button onClick={() => this.handleDeleteUser(item)}
+                                                    className='btn-delete' >
+                                                    <i className="fas fa-trash-alt"></i>
+                                                </button>
                                             </td>
 
                                         </tr>
