@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { getAllUsers, createNewUserService, deleteUser } from '../../services/userService';
+import { getAllUsers, createNewUserService, deleteUser, editUserService } from '../../services/userService';
 import { emitter } from '../../utils/emitter';
 import ModalUser from './ModalUser';
+import ModalEditUser from './ModalEditUser';
 import './UserManage.scss'
 
 
@@ -12,7 +13,8 @@ class UserManage extends Component {
         super(props)
         this.state = {
             arrUsers: [],
-            isOpenModalUser: false
+            isOpenModalUser: false,
+            isOpenModalEditUser: false,
         }
     }
 
@@ -40,7 +42,11 @@ class UserManage extends Component {
             isOpenModalUser: !this.state.isOpenModalUser
         })
     }
-
+    toggleUserEditModal = () => {
+        this.setState({
+            isOpenModalEditUser: !this.state.isOpenModalEditUser
+        })
+    }
     createNewUser = async (data) => {
         try {
             let res = await createNewUserService(data)
@@ -70,6 +76,27 @@ class UserManage extends Component {
         }
     }
 
+    handleEditUser = (user) => {
+        console.log('check', user)
+        this.setState({
+            isOpenModalEditUser: true,
+            userEdit: user
+
+        })
+    }
+    editUser = async (data) => {
+        let res = await editUserService(data)
+        if (res.errCode !== 0) {
+            alert(res.errMessage)
+        } else {
+            this.setState({
+                isOpenModalEditUser: false,
+            })
+            await this.getAllUserFromReact()
+
+        }
+    }
+
     render() {
         let arrUsers = this.state.arrUsers
         return (
@@ -79,6 +106,15 @@ class UserManage extends Component {
                     toggleUserModal={this.toggleUserModal}
                     createNewUser={this.createNewUser}
                 />
+                {this.state.isOpenModalEditUser === true &&
+                    <ModalEditUser
+                        toggleUserModal={this.toggleUserEditModal}
+                        isOpen={this.state.isOpenModalEditUser}
+                        currentUser={this.state.userEdit}
+                        editUser={this.editUser}
+                    />
+                }
+
                 <div className='title text-center'>Manage Users with Eric</div>
                 <div className='mx-3'>
                     <button className='btn btn-primary px-3'
@@ -108,7 +144,8 @@ class UserManage extends Component {
                                             <td>{item.lastName}</td>
                                             <td>{item.address}</td>
                                             <td className='text-center'>
-                                                <button className='btn-edit'>
+                                                <button onClick={() => this.handleEditUser(item)}
+                                                    className='btn-edit'>
                                                     <i className="fas fa-pencil-alt"></i>
                                                 </button>
                                                 <button onClick={() => this.handleDeleteUser(item)}
