@@ -2,9 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeHeader.scss'
 import { FormattedMessage } from 'react-intl'
+import { LANGUAGES } from '../../utils/constant'
+import { changeLanguageApp } from '../../store/actions'
 class HomeHeader extends Component {
 
+
+    changeLanguage = (language) => {
+        this.props.changeLanguageAppRedux(language)
+
+    }
     render() {
+        let language = this.props.language
+
+
 
         return (
             <React.Fragment>
@@ -34,8 +44,8 @@ class HomeHeader extends Component {
                         </div>
                         <div className='right-content'>
                             <div className='support'><i className="fas fa-question-circle"></i> <b><FormattedMessage id="homeheader.support" /></b></div>
-                            <div className='language-vn'>Vi</div>
-                            <div className='language-en'>En</div>
+                            <div className={language === LANGUAGES.VI ? 'language-vn active' : 'language-vn'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VI</span></div>
+                            <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
                         </div>
                     </div>
 
@@ -99,6 +109,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
     };
 };
 

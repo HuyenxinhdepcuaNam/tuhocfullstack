@@ -64,17 +64,32 @@
             }
 
             .language-vn {
+                opacity: 0.5;
+
                 &.active {
                     color: orange;
+                }
+
+                &:hover {
+                    opacity: 1;
+
                 }
             }
 
             .language-en {
-                margin: 0 15px;
+                opacity: 0.5;
+                margin : 0 15px;
+                cursor : pointer;
+
+                &:hover {
+                    opacity: 1;
+                }
 
                 &.active {
                     color: blue;
                 }
+
+
             }
 
         }
