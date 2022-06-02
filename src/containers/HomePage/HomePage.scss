@@ -1,0 +1,137 @@
+.slick-prev {
+    border    : 2px solid #d7d7d7 !important;
+    left      : -10px !important;
+    z-index   : 1000 !important;
+    height    : 48px !important;
+    width     : 44px !important;
+    background: #fff !important;
+
+    &:hover {
+        background: #d7d7d7 !important;
+    }
+
+}
+
+.slick-prev::before {
+    font-family: FontAwsome !important;
+    color      : red !important;
+}
+
+.slick-next {
+    border    : 2px solid #d7d7d7 !important;
+    right     : -10px !important;
+    z-index   : 1000 !important;
+    height    : 48px !important;
+    width     : 44px !important;
+    background: #fff !important;
+
+    &:hover {
+        background: #d7d7d7 !important;
+    }
+}
+
+.slick-next::before {
+    font-family: FontAwsome !important;
+    color      : red !important;
+
+}
+
+.section-general {
+
+    &.section-specialty,
+    &.section-outstanding-doctor {
+        background: #d7d7d7;
+
+    }
+
+    &.section-medical-facility,
+    &.section-handbook {
+        background: white;
+
+    }
+
+
+
+    .section-body {
+
+        .section-customize {
+            .bg-image {
+                width              : 278px;
+                height             : 150px;
+                background-position: center;
+                background-repeat  : no-repeat;
+                background-size    : cover;
+                background-color   : #d7d7d7;
+
+                &.section-specialty {
+                    background-image: url('../../assets/specialty/co-xuong-khop.jpg');
+
+                }
+
+                &.section-medical-facility {
+                    background-image: url('../../assets/medicalfacility/benh-vien-thu-cuc-1.jpg');
+
+                }
+
+                &.section-outstanding-doctor {
+                    background-image: url('../../assets/outstanding-doctor/anh-dai-dien-bs.jpg');
+                    border-radius   : 50%;
+                    height          : 120px;
+                    width           : 120px;
+                    display         : block;
+                    margin-left     : auto;
+                    margin-right    : auto;
+                    width           : 50%;
+                }
+
+                &.section-handbook {
+                    background-image: url('../../assets/handbook/kham-suc-khoe-tong-quat-o-ha-noi.jpg');
+
+                }
+            }
+        }
+
+    }
+}
+
+
+
+
+.section-general {
+    height: 330px;
+
+    .section-container {
+        margin        : 0 100px;
+        display       : flex;
+        flex-direction: column;
+
+        .section-header {
+            height       : 60px;
+            margin-bottom: 30px;
+            padding-top  : 30px;
+
+            .title-section {
+                font-size  : 22px;
+                font-weight: 600;
+            }
+
+            .btn-section {
+                float           : right;
+                padding         : 10px 15px;
+                border          : none;
+                outline         : none;
+                background-color: rgb(201, 193, 193);
+                display         : block;
+                text-transform  : uppercase;
+
+
+                &:hover {
+                    background-color: orange;
+                    color           : white;
+                }
+            }
+        }
+
+
+    }
+}
