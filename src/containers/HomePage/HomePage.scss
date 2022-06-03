@@ -50,6 +50,39 @@
 
     }
 
+    &.section-about {
+        background: #d7d7d7;
+        height    : 500px;
+
+        .section-about-header {
+            font-weight: 600;
+            font-size  : 22px;
+            padding    : 20px 10px;
+            margin     : 0 100px;
+
+        }
+
+        .section-about-content {
+            margin : 0 100px;
+            display: flex;
+            gap    : 20px;
+
+            .content-left {
+                width: 50%;
+
+            }
+
+            .content-right {
+                width     : 50%;
+                font-size : large;
+                text-align: justify;
+                font-style: italic;
+
+            }
+        }
+
+    }
+
 
 
     .section-body {
@@ -133,5 +166,16 @@
         }
 
 
+    }
+
+
+}
+
+.home-footer {
+    text-align : center;
+    padding-top: 7px;
+
+    a {
+        text-decoration: unset;
     }
 }
