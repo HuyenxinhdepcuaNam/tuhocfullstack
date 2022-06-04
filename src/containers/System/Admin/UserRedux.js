@@ -3,6 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { getALLCodeService } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils'
+import * as actions from '../../../store/actions'
+
 class UserRedux extends Component {
     constructor(props) {
         super(props)
@@ -12,23 +14,31 @@ class UserRedux extends Component {
     }
 
     async componentDidMount() {
-        try {
-            let res = await getALLCodeService('gender')
-            if (res && res.errCode === 0) {
-                this.setState({
-                    genderArr: res.data
-                })
-            }
-        } catch (e) {
+        this.props.getGenderStart()
+        // try {
+        //     let res = await getALLCodeService('gender')
+        //     if (res && res.errCode === 0) {
+        //         this.setState({
+        //             genderArr: res.data
+        //         })
+        //     }
+        // } catch (e) {
 
+        // }
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.genderRedux !== this.props.genderRedux) {
+            this.setState({
+                genderArr: this.props.genderRedux
+            })
         }
     }
-
 
     render() {
         let genders = this.state.genderArr
         let language = this.props.language
-        console.log(genders)
+
+        console.log('check props', this.props.genderRedux)
         return (
             <div className="user-redux-container" >
                 <div className="title" >
@@ -54,11 +64,11 @@ class UserRedux extends Component {
                                 <label><FormattedMessage id="manage-user.lastName" /> </label>
                                 <input className='form-control' type='text' />
                             </div>
-                            <div className='col-4'>
+                            <div className='col-6'>
                                 <label><FormattedMessage id="manage-user.phone-number" /> </label>
                                 <input className='form-control' type='text' />
                             </div>
-                            <div className='col-8'>
+                            <div className='col-6'>
                                 <label><FormattedMessage id="manage-user.address" /></label>
                                 <input className='form-control' type='text' />
                             </div>
@@ -108,13 +118,14 @@ class UserRedux extends Component {
 
 const mapStateToProps = state => {
     return {
-        userInfo: state.user.userInfo,
-        language: state.app.language
+        language: state.app.language,
+        genderRedux: state.admin.genders
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        getGenderStart: () => dispatch(actions.fetchGenderStart())
     };
 };
 
