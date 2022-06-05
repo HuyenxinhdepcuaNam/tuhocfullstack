@@ -67,6 +67,7 @@
         "position": "Chức danh",
         "role-id": "Vai trò",
         "image": "Ảnh đại diện",
-        "save": "Lưu thông tin"
+        "save": "Lưu thông tin",
+        "upload-img": "Tải ảnh lên"
     }
 }
