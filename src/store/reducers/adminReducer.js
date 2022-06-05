@@ -45,7 +45,6 @@ const adminReducer = (state = initialState, action) => {
         //Role
         case actionTypes.FETCH_ROLE_SUCCESS:
             state.roles = action.data
-            console.log('check action', action)
             return {
                 ...state
             }
