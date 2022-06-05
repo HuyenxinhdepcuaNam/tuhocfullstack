@@ -6,6 +6,7 @@ import * as actions from '../../../store/actions'
 import './UserRedux.scss'
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
+import TableManageUser from './TableManageUser';
 
 class UserRedux extends Component {
     constructor(props) {
@@ -67,6 +68,20 @@ class UserRedux extends Component {
                 role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : ""
             })
         }
+        if (prevProps.listUsers !== this.props.listUsers) {
+            this.setState({
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                phoneNumber: '',
+                address: '',
+                gender: '',
+                position: '',
+                role: '',
+                avatar: ''
+            })
+        }
     }
 
     handleOnChangeImage = (event) => {
@@ -102,6 +117,8 @@ class UserRedux extends Component {
             roleId: this.state.role,
             positionId: this.state.position,
         })
+        this.props.fetUserRedux()
+
     }
     checkValidate = () => {
         let arrCheck = ['email', 'password', 'firstName', 'lastName',
@@ -137,6 +154,7 @@ class UserRedux extends Component {
             role, avatar } = this.state
         return (
             <div className="user-redux-container" >
+
                 <div className="title" >
                     Manage Users by Redux
                 </div>
@@ -144,6 +162,7 @@ class UserRedux extends Component {
                 <div className="user-redux-body" >
                     <div className='container'>
                         <div className='row '>
+
                             <div className='col-12 my-3'><FormattedMessage id="manage-user.add" /></div>
                             <div className='col-3 '>
                                 <label><FormattedMessage id="manage-user.email" /></label>
@@ -240,10 +259,13 @@ class UserRedux extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className='col-12 mt-3' >
+                            <div className='col-12 my-3' >
                                 <button className=' btn btn-primary' onClick={() => this.handleSaveUser()}>
                                     <FormattedMessage id="manage-user.save" />
                                 </button>
+                            </div>
+                            <div className='col-12 mb-5 '>
+                                <TableManageUser />
                             </div>
                         </div>
                     </div>
@@ -253,6 +275,7 @@ class UserRedux extends Component {
                         mainSrc={this.state.previewImg}
                         onCloseRequest={() => this.setState({ isOpen: false })}
                     />}
+
             </div >
         )
     }
@@ -266,6 +289,7 @@ const mapStateToProps = state => {
         isLoadingGender: state.admin.isLoadingGender,
         positionRedux: state.admin.positions,
         roleRedux: state.admin.roles,
+        listUsers: state.admin.users,
 
     };
 };
@@ -275,7 +299,9 @@ const mapDispatchToProps = dispatch => {
         getGenderStart: () => dispatch(actions.fetchGenderStart()),
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
-        createNewUser: (data) => dispatch(actions.createNewUser(data))
+        createNewUser: (data) => dispatch(actions.createNewUser(data)),
+        fetUserRedux: () => dispatch(actions.fetchAllUserStart())
+
     };
 };
 
