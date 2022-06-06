@@ -31,6 +31,9 @@ const actionTypes = Object.freeze({
     DELETE_USER_SUCCESS: "DELETE_USER_SUCCESS",
     DELETE_USER_FAILLED: "DELETE_USER_FAILLED ",
 
+    EDIT_USER_SUCCESS: "EDIT_USER_SUCCESS",
+    EDIT_USER_FAILLED: "EDIT_USER_FAILLED"
+
 })
 
 export default actionTypes;

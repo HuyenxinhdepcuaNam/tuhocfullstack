@@ -68,6 +68,7 @@
         "role-id": "  Role",
         "image": "Avatar ",
         "save": "  Save",
-        "upload-img": "Upload image"
+        "upload-img": "Upload image",
+        "edit": "Update"
     }
 }

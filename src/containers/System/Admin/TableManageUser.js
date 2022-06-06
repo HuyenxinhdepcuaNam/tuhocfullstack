@@ -14,7 +14,6 @@ class TableManageUser extends Component {
     }
     async componentDidMount() {
         let abc = this.props.fetUserRedux()
-        console.log('check fet', abc)
 
     }
 
@@ -29,11 +28,14 @@ class TableManageUser extends Component {
         this.props.deleteAUserRedux(item.id)
     }
 
+    handleEditUser = (user) => {
+        this.props.handleEditUserFromParent(user)
+    }
+
 
 
     render() {
         let users = this.state.userRedux
-        console.log('check users', users)
         return (
             <table id="TableManageUser">
                 <thead>
@@ -54,7 +56,7 @@ class TableManageUser extends Component {
                                 <td>{item.lastName}</td>
                                 <td>{item.address}</td>
                                 <td>
-                                    <button
+                                    <button onClick={() => this.handleEditUser(item)}
                                         className='btn-edit'>
                                         <i className="fas fa-pencil-alt"></i>
                                     </button>
@@ -83,7 +85,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetUserRedux: () => dispatch(actions.fetchAllUserStart()),
-        deleteAUserRedux: (id) => dispatch(actions.deleteAUser(id))
+        deleteAUserRedux: (id) => dispatch(actions.deleteAUser(id)),
     };
 };
 

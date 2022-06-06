@@ -1,5 +1,8 @@
 import actionTypes from "./actionTypes";
-import { getALLCodeService, createNewUserService, getAllUsers, deleteUser } from '../../services/userService'
+import {
+    getALLCodeService, createNewUserService, getAllUsers,
+    deleteUser, editUserService
+} from '../../services/userService'
 import { ToastContainer, toast } from 'react-toastify';
 
 
@@ -120,7 +123,6 @@ export const fetchAllUserStart = () => {
     return (async (dispatch, getState) => {
         try {
             let res = await getAllUsers('All')
-            console.log('check res getalluser', res)
             if (res && res.errCode === 0) {
                 dispatch(fetchAllUserSuccess(res.users.reverse()))
 
@@ -149,7 +151,6 @@ export const deleteAUser = (userId) => {
     return (async (dispatch, getState) => {
         try {
             let res = await deleteUser(userId)
-            console.log('check res delete user', res)
             if (res && res.errCode === 0) {
                 dispatch(deleteUserSuccess())
                 dispatch(fetchAllUserStart())
@@ -171,4 +172,31 @@ export const deleteUserSuccess = () => ({
 })
 export const deleteUserFailled = () => ({
     type: actionTypes.DELETE_USER_FAILLED
+})
+
+// edit user
+export const editAUser = (data) => {
+    return (async (dispatch, getState) => {
+        try {
+            let res = await editUserService(data)
+            console.log('check edit data', data)
+            if (res && res.errCode === 0) {
+                dispatch(editAUserSuccess())
+                dispatch(fetchAllUserStart())
+                toast.success('Updated!')
+            } else {
+                dispatch(editAUserFailled())
+                toast.error('Update failled!')
+            }
+        } catch (e) {
+            dispatch(editAUserFailled())
+            toast.error('Update failled!')
+        }
+    })
+}
+export const editAUserSuccess = () => ({
+    type: actionTypes.EDIT_USER_SUCCESS
+})
+export const editAUserFailled = () => ({
+    type: actionTypes.EDIT_USER_FAILLED
 })
