@@ -70,5 +70,9 @@
         "save": "Lưu thông tin",
         "upload-img": "Tải ảnh lên",
         "edit": "Lưu thay đổi"
+    },
+    "homepage": {
+        "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
+        "more-info": "Xem thêm"
     }
 }
