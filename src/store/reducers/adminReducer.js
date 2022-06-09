@@ -7,7 +7,8 @@ const initialState = {
     positions: [],
     isLoadingGender: false,
     users: [],
-    topDoctors: []
+    topDoctors: [],
+    allDoctors: [],
 }
 
 
@@ -74,6 +75,17 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_TOP_DOCTOR_FAILLED:
             state.topDoctors = []
+            return {
+                ...state
+            }
+        // get all doctors
+        case actionTypes.FETCH_ALL_DOCTORS_SUCCESS:
+            state.allDoctors = action.dataDoctors
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_ALL_DOCTORS_FAILLED:
+            state.allDoctors = []
             return {
                 ...state
             }
