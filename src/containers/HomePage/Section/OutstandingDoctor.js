@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Slider from "react-slick";
 import * as actions from '../../../store/actions'
 import { LANGUAGES } from '../../../utils'
+import { withRouter } from 'react-router'
 
 class OutstandingDoctor extends Component {
     constructor(props) {
@@ -24,12 +25,13 @@ class OutstandingDoctor extends Component {
             })
         }
     }
-
+    handleViewDetailDoctor = (doctor) => {
+        this.props.history.push(`/detail-doctor/${doctor.id}`)
+    }
 
     render() {
         let arrDoctors = this.state.arrDoctors
         let { language } = this.props
-        console.log('arr doctor', arrDoctors)
         return (
             <div className='section-general section-outstanding-doctor'>
                 <div className='section-container'>
@@ -49,7 +51,7 @@ class OutstandingDoctor extends Component {
                                 let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`
 
                                 return (
-                                    <div className='section-customize' key={index}>
+                                    <div className='section-customize' key={index} onClick={() => this.handleViewDetailDoctor(item)}>
                                         <div className='bg-image section-outstanding-doctor'
                                             style={{ backgroundImage: `url(${imageBase64})` }}
                                         ></div>
@@ -81,4 +83,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor));

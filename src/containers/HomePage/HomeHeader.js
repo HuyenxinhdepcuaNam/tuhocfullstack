@@ -50,50 +50,50 @@ class HomeHeader extends Component {
                     </div>
 
                 </div>
-                <div className='homeheader-banner'>
-                    <div className='content-up'>
-                        <div className='title1'><FormattedMessage id="banner.title1" /></div>
-                        <div className='title2'><b><FormattedMessage id="banner.title2" /></b></div>
-                        <div className='search'>
-                            <i className="fas fa-search"></i>
-                            <input className='input' type='text' placeholder='Tìm kiếm' />
-                        </div>
-                    </div>
-                    <div className='content-down'>
-                        <div className='option'>
-                            <div className='option-child'>
-                                <div className='icon'><i className="far fa-hospital"></i></div>
-                                <div className='text'><b><FormattedMessage id="banner.Specialist-examination" /></b></div>
-                            </div>
-                            <div className='option-child'>
-                                <div className='icon'><i className="far fa-hospital"></i></div>
-                                <div className='text'><b><FormattedMessage id="banner.Remote-examination" /></b></div>
-                            </div>
-                            <div className='option-child'>
-                                <div className='icon'><i className="far fa-hospital"></i></div>
-                                <div className='text'><b><FormattedMessage id="banner.General-examination" /></b></div>
-                            </div>
-                            <div className='option-child'>
-                                <div className='icon'><i className="far fa-hospital"></i></div>
-                                <div className='text'><b><FormattedMessage id="banner.Medical-tests" /></b></div>
-                            </div>
-                            <div className='option-child'>
-                                <div className='icon'><i className="far fa-hospital"></i></div>
-                                <div className='text'><b><FormattedMessage id="banner.Mental-health" /></b></div>
-                            </div>
-                            <div className='option-child'>
-                                <div className='icon'><i className="far fa-hospital"></i></div>
-                                <div className='text'><b><FormattedMessage id="banner.Dental-Examination" /></b></div>
-                            </div>
-                            <div className='option-child'>
-                                <div className='icon'><i className="far fa-hospital"></i></div>
-                                <div className='text'><b><FormattedMessage id="banner.Surgery-Package" /></b></div>
+                {this.props.isShowBanner === true &&
+                    < div className='homeheader-banner'>
+                        <div className='content-up'>
+                            <div className='title1'><FormattedMessage id="banner.title1" /></div>
+                            <div className='title2'><b><FormattedMessage id="banner.title2" /></b></div>
+                            <div className='search'>
+                                <i className="fas fa-search"></i>
+                                <input className='input' type='text' placeholder='Tìm kiếm' />
                             </div>
                         </div>
-
-
+                        <div className='content-down'>
+                            <div className='option'>
+                                <div className='option-child'>
+                                    <div className='icon'><i className="far fa-hospital"></i></div>
+                                    <div className='text'><b><FormattedMessage id="banner.Specialist-examination" /></b></div>
+                                </div>
+                                <div className='option-child'>
+                                    <div className='icon'><i className="far fa-hospital"></i></div>
+                                    <div className='text'><b><FormattedMessage id="banner.Remote-examination" /></b></div>
+                                </div>
+                                <div className='option-child'>
+                                    <div className='icon'><i className="far fa-hospital"></i></div>
+                                    <div className='text'><b><FormattedMessage id="banner.General-examination" /></b></div>
+                                </div>
+                                <div className='option-child'>
+                                    <div className='icon'><i className="far fa-hospital"></i></div>
+                                    <div className='text'><b><FormattedMessage id="banner.Medical-tests" /></b></div>
+                                </div>
+                                <div className='option-child'>
+                                    <div className='icon'><i className="far fa-hospital"></i></div>
+                                    <div className='text'><b><FormattedMessage id="banner.Mental-health" /></b></div>
+                                </div>
+                                <div className='option-child'>
+                                    <div className='icon'><i className="far fa-hospital"></i></div>
+                                    <div className='text'><b><FormattedMessage id="banner.Dental-Examination" /></b></div>
+                                </div>
+                                <div className='option-child'>
+                                    <div className='icon'><i className="far fa-hospital"></i></div>
+                                    <div className='text'><b><FormattedMessage id="banner.Surgery-Package" /></b></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                }
             </React.Fragment >
         );
     }
