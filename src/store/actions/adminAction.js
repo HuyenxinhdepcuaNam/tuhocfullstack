@@ -271,3 +271,26 @@ export const saveDetailDoctor = (data) => {
         }
     })
 }
+
+// fetch all schedule hours
+export const fetchAllcodeScheduleTime = () => {
+    return (async (dispatch, getState) => {
+        try {
+            let res = await getALLCodeService('TIME')
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+                    dataTime: res.data
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILLED
+                })
+            }
+        } catch (e) {
+            dispatch({
+                type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILLED
+            })
+        }
+    })
+}

@@ -77,5 +77,11 @@
     "homepage": {
         "outstanding-doctor": "Outstanding doctor",
         "more-info": "More info"
+    },
+    "manage-schedule": {
+        "title": "Manage doctor plan",
+        "choose-doctor": "Choose doctor",
+        "choose-date": "Choose date",
+        "save": "Save"
     }
 }

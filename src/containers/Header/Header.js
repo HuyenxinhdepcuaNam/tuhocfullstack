@@ -25,17 +25,14 @@ class Header extends Component {
     componentDidMount() {
         let { userInfo } = this.props
         let menu = []
-        console.log('chekc user info', userInfo)
         if (userInfo && !_.isEmpty(userInfo)) {
             let role = userInfo.user.roleId
-            console.log('check role', role)
             if (role === USER_ROLE.ADMIN) {
                 menu = adminMenu
             }
             if (role === USER_ROLE.DOCTOR) {
                 menu = doctorMenu
             }
-            console.log('check menu', menu)
         }
         this.setState({
             menuApp: menu
