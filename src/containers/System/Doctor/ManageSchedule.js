@@ -9,6 +9,7 @@ import DatePicker from '../../../components/Input/DatePicker';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import _, { rearg, result } from 'lodash';
+import { saveBulkScheduleDoctor } from '../../../services/userService'
 // const options = [
 //     { value: 'chocolate', label: 'Chocolate' },
 //     { value: 'strawberry', label: 'Strawberry' },
@@ -97,7 +98,7 @@ class ManageSchedule extends Component {
             })
         }
     }
-    handleSaveSchedule = () => {
+    handleSaveSchedule = async () => {
         let result = []
         let { rangeTime, selectedDoctor, currentDate } = this.state
         if (selectedDoctor && _.isEmpty(selectedDoctor)) {
@@ -109,7 +110,9 @@ class ManageSchedule extends Component {
             return
         }
 
-        let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER)
+        // let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER)
+        let formatedDate = new Date(currentDate).getTime()
+
         if (rangeTime && rangeTime.length > 0) {
             let selectedTime = rangeTime.filter(item => item.isSelected === true)
             if (selectedTime && selectedTime.length > 0) {
@@ -117,25 +120,23 @@ class ManageSchedule extends Component {
                     let object = {}
                     object.doctorId = selectedDoctor.value
                     object.date = formatedDate
-                    object.time = time.keyMap
+                    object.timeType = time.keyMap
                     result.push(object)
                 })
             } else {
                 toast.error('Missing time!')
                 return
             }
-            console.log('check result', result)
+            let res = await saveBulkScheduleDoctor({
+                arrSchedule: result,
+                doctorId: selectedDoctor.value,
+                formatedDate: formatedDate
+
+            })
+            console.log('check result', res)
 
         }
-        // switch (!this.state) {
-        //     case !selectedDoctor:
-        //         toast.error('Missing doctor!')
-        //         break
-        //     case !currentDate:
-        //         toast.error('Missing date!')
-        //         break
 
-        // }
     }
     render() {
         console.log('check props', this.state)
