@@ -5,12 +5,14 @@ import { LANGUAGES } from '../../../utils'
 import moment from 'moment';
 import localization from 'moment/locale/vi'
 import { getScheduleDoctorByDate } from '../../../services/userService'
+import _ from 'lodash';
 
 class DoctorSchedule extends Component {
     constructor(props) {
         super(props)
         this.state = {
             allDays: [],
+            allAvailableTime: []
         }
     }
     async componentDidMount() {
@@ -33,7 +35,8 @@ class DoctorSchedule extends Component {
         for (let i = 0; i < 7; i++) {
             let object = {}
             if (language === LANGUAGES.VI) {
-                object.label = moment(new Date()).add(i, 'days').format('dddd-DD/MM')
+                let labelVI = moment(new Date()).add(i, 'days').format('dddd-DD/MM')
+                object.label = this.titleCase(labelVI)
             }
             if (language === LANGUAGES.EN) {
                 object.label = moment(new Date()).add(i, 'days').locale('en').format('ddd-DD/MM')
@@ -57,13 +60,20 @@ class DoctorSchedule extends Component {
             let date = event.target.value
             let res = await getScheduleDoctorByDate(doctorId, date)
             console.log('check res', res)
+            if (res && res.errCode === 0) {
+                this.setState({
+                    allAvailableTime: res.data ? res.data : []
+                })
+            }
+
         }
     }
 
     render() {
 
-        let { allDays } = this.state
-
+        let { allDays, allAvailableTime } = this.state
+        let { language } = this.props
+        console.log('check state', this.state)
         return (
             <React.Fragment>
                 <div className='doctor-schedule-container'>
@@ -73,11 +83,26 @@ class DoctorSchedule extends Component {
                                 return (
                                     <option value={item.value}
                                         key={index}>
-                                        {this.titleCase(`${item.label}`)}
+                                        {item.label}
                                     </option>
                                 )
                             })}
                         </select>
+                    </div>
+                    <div className='all-available-time'>
+                        <div className='text-calendar'>
+                            <span><i className="fas fa-calendar-alt"></i> Lịch khám</span>
+                        </div>
+                        <div className='time-content'>
+                            {allAvailableTime && allAvailableTime.length > 0 ? allAvailableTime.map((item, index) => {
+                                let times = language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn
+                                return (
+                                    <button key={index}>{times}</button>
+                                )
+                            })
+                                : 'Không có lịch hẹn khám bệnh.'
+                            }
+                        </div>
                     </div>
                 </div>
             </React.Fragment>

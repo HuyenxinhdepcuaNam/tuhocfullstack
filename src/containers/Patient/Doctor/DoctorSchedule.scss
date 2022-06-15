@@ -3,7 +3,7 @@
         select {
             border       : none;
             outline      : none;
-            padding      : 10px;
+            padding      : 15px 0;
             border-bottom: 1px solid gray;
             cursor       : pointer;
             color        : rgb(64, 155, 235);
@@ -16,4 +16,39 @@
         }
 
     }
+
+    .all-available-time {
+        .text-calendar {
+            padding    : 20px 0;
+            font-size  : 20px;
+            font-weight: 600;
+
+            span {
+                text-transform: uppercase;
+            }
+        }
+
+        .time-content {
+            display  : flex;
+            flex-wrap: wrap;
+            gap      : 15px;
+
+            button {
+                border     : none;
+                outline    : none;
+                cursor     : pointer;
+                width      : 120px;
+                padding    : 10px;
+                font-weight: 600;
+                font-size  : 16px;
+
+                &:hover {
+                    background-color: rgb(64, 155, 235);
+                    color           : white;
+                }
+            }
+
+        }
+    }
+
 }
