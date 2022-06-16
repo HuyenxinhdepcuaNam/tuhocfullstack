@@ -133,8 +133,12 @@ class ManageSchedule extends Component {
                 formatedDate: formatedDate
 
             })
-            console.log('check result', res)
-
+            if (res && res.errCode === 0) {
+                toast.success('Success!')
+            } else {
+                toast.error('Failed!')
+                console.log('Error saveBulkScheduleDoctor ', res)
+            }
         }
 
     }
@@ -142,6 +146,7 @@ class ManageSchedule extends Component {
         console.log('check props', this.state)
         let { rangeTime } = this.state
         let { language } = this.props
+        let yesterday = new Date(new Date().setDate(new Date().getDate() - 1))
         return (
             <React.Fragment>
                 <div className="manage-schedule-container">
@@ -162,7 +167,7 @@ class ManageSchedule extends Component {
                                 <label><FormattedMessage id={'manage-schedule.choose-date'} /></label>
                                 <DatePicker className='form-control'
                                     value={this.state.currentDate}
-                                    minDate={new Date()}
+                                    minDate={yesterday}
                                     onChange={this.handleOnchangeDatePicker} />
                             </div>
                             <div className='col-12 pick-hour-container'>
