@@ -98,7 +98,13 @@
             "choose-doctor": "Chọn bác sĩ",
             "introduction": "Thông tin giới thiệu",
             "save": "Lưu thông tin",
-            "create": "Tạo thông tin"
+            "create": "Tạo thông tin",
+            "price": "Chọn giá",
+            "payment": "Chọn phương thức thanh toán",
+            "address": "Chọn tỉnh thành",
+            "name-clinic": "Tên phòng khám",
+            "address-clinic": "Địa chỉ phòng khám",
+            "note": "Ghi chú"
         }
     }
 }

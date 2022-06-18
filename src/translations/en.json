@@ -98,7 +98,13 @@
             "choose-doctor": "Choose doctor",
             "introduction": "Introduction",
             "save": "  Save",
-            "create": "Create"
+            "create": "Create",
+            "price": "Price",
+            "payment": "Payment",
+            "address": "Address",
+            "name-clinic": "Name clinic",
+            "address-clinic": "Address clinic",
+            "note": "Note"
         }
     }
 }
