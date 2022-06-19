@@ -90,6 +90,13 @@
             "doctor-schedule-notavailable": "Doctor schedule Not available.",
             "choose": "Choose",
             "book-free": "and book (free)"
+        },
+        "extraInfor": {
+            "hide": "Hide table price",
+            "show": " Show detail",
+            "address": "Address clinic",
+            "price": "PRICE:",
+            "priceL": "Price"
         }
     },
     "admin": {

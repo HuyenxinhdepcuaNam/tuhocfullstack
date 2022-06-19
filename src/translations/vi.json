@@ -90,6 +90,13 @@
             "doctor-schedule-notavailable": "Không có lịch hẹn khám bệnh.",
             "choose": "Chọn",
             "book-free": "và đặt (miễn phí)"
+        },
+        "extraInfor": {
+            "hide": "Ẩn bảng giá",
+            "show": " Xem chi tiết",
+            "address": "ĐỊA CHỈ KHÁM",
+            "price": "GIÁ KHÁM:",
+            "priceL": "Giá khám"
         }
     },
     "admin": {

@@ -136,7 +136,7 @@ class DoctorSchedule extends Component {
                         <div className='book-free'>
                             {allAvailableTime && allAvailableTime.length > 0
                                 ? <span><FormattedMessage id='patient.detail-doctor.choose' />
-                                    <i class="far fa-hand-pointer"></i>
+                                    <i className="far fa-hand-pointer"></i>
                                     <FormattedMessage id='patient.detail-doctor.book-free' /></span>
                                 : ''}
 
