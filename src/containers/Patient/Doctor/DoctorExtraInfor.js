@@ -32,7 +32,6 @@ class DoctorExtraInfor extends Component {
                 })
             }
 
-            console.log('doctorIdFromParent', this.state.extraInfor)
         }
     }
     showHideDetailInforDoctor = () => {
@@ -45,7 +44,6 @@ class DoctorExtraInfor extends Component {
         let { language } = this.props
         let { isShowDetailInfor, extraInfor } = this.state
         // let price = language === LANGUAGES.EN ? extraInfor.priceTypeData.valueEn : extraInfor.priceTypeData.value.Vi
-        console.log('check state', this.state)
         return (
             <React.Fragment>
                 <div className='doctor-extra-infor-container'>

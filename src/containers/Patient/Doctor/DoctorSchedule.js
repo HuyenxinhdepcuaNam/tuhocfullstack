@@ -29,8 +29,6 @@ class DoctorSchedule extends Component {
 
     async componentDidUpdate(prevProps, PrevState) {
         let { language } = this.props
-        console.log('check moment vi', moment(new Date()).format('dddd-DD/MM'))
-        console.log('check moment en', moment(new Date()).locale('en').format('ddd-DD/MM'))
         if (prevProps.language !== this.props.language) {
             let allDays = this.getArrDays(language)
             this.setState({
@@ -73,7 +71,6 @@ class DoctorSchedule extends Component {
             object.value = moment(new Date()).add(i, 'days').startOf('day').valueOf()
 
             allDays.push(object)
-            console.log('check arrDay', allDays)
         }
         return allDays
 
@@ -113,7 +110,6 @@ class DoctorSchedule extends Component {
         let { allDays, allAvailableTime, isOpenModalBooking,
             dataScheduleTimeModal } = this.state
         let { language } = this.props
-        console.log('check state', this.state)
         return (
             <React.Fragment>
                 <div className='doctor-schedule-container'>
