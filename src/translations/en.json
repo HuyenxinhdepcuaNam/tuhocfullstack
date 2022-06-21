@@ -97,6 +97,20 @@
             "address": "Address clinic",
             "price": "PRICE:",
             "priceL": "Price"
+        },
+        "bookingModal": {
+            "inforBooking": "Booking information",
+            "name": "Full name",
+            "phoneNumber": "Phone number",
+            "email": "Email",
+            "address": "Address",
+            "reason": "Reason",
+            "birthday": "Birthday",
+            "genders": "Gender",
+            "confirm": "Confirm",
+            "cancel": "Cancel",
+            "freeBooking": "Free to booking",
+            "price": "PRICE:"
         }
     },
     "admin": {

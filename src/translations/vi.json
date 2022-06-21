@@ -97,6 +97,20 @@
             "address": "ĐỊA CHỈ KHÁM",
             "price": "GIÁ KHÁM:",
             "priceL": "Giá khám"
+        },
+        "bookingModal": {
+            "inforBooking": "Thông tin đặt lịch khám bệnh",
+            "name": "Họ tên",
+            "phoneNumber": "Số điện thoại",
+            "email": "Địa chỉ email",
+            "address": "Địa chỉ liên hệ",
+            "reason": "Lý do khám",
+            "birthday": "Ngày sinh",
+            "genders": "Giới tính",
+            "confirm": "Xác nhận",
+            "cancel": "Hủy",
+            "freeBooking": "Miễn phí đặt lịch",
+            "price": "GIÁ KHÁM:"
         }
     },
     "admin": {

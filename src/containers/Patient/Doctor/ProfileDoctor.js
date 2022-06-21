@@ -14,6 +14,7 @@ class ProfileDoctor extends Component {
         super(props)
         this.state = {
             dataProfile: {}
+
         }
     }
     async componentDidMount() {
@@ -54,7 +55,7 @@ class ProfileDoctor extends Component {
             return (
                 <>
                     <div>{date}</div>
-                    <div>Miễn phí đặt lịch</div>
+                    <div><FormattedMessage id='patient.bookingModal.freeBooking' /></div>
                 </>
             )
         }
@@ -69,7 +70,6 @@ class ProfileDoctor extends Component {
             nameVi = `${dataProfile.positionData.valueVi} ${dataProfile.firstName} ${dataProfile.lastName}`
             nameEn = `${dataProfile.positionData.valueEn} ${dataProfile.lastName} ${dataProfile.firstName}`
         }
-        console.log('check this state Profile doctor', dataTime)
         return (
             <React.Fragment>
                 <div className='profile-doctor-container'>
@@ -100,7 +100,7 @@ class ProfileDoctor extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className='price '> Giá khám:
+                    <div className='price '> <FormattedMessage id='patient.bookingModal.price' />
                         {dataProfile && dataProfile.Doctor_Infor && language === LANGUAGES.VI
                             ? <NumberFormat
                                 className='currency'
