@@ -23,6 +23,7 @@ class ProfileDoctor extends Component {
             dataProfile: data
         })
     }
+
     getInforDoctor = async (id) => {
         let result = {}
         if (id) {
