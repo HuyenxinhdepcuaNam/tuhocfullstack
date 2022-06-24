@@ -2,51 +2,59 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Specialty.scss'
 import { FormattedMessage } from 'react-intl'
-
+import { getAllSpecialty } from '../../../services/userService'
 import Slider from "react-slick";
 
 
 
 
 class Specialty extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            dataSpecialty: ''
+        }
+    }
+    async componentDidMount() {
+        let res = await getAllSpecialty()
+        if (res && res.errCode === 0) {
+            this.setState({
+                dataSpecialty: res.data
+            })
+        }
+
+    }
+    async componentDidUpdate() {
+
+    }
 
     render() {
-
-
+        let { dataSpecialty } = this.state
+        console.log('check this.state', this.state)
 
         return (
             <div className='section-general section-specialty'>
                 <div className='section-container'>
                     <div className='section-header'>
-                        <span className='title-section'> Chuyên khoa phổ biến</span>
-                        <button className='btn-section'>Xem thêm</button>
+                        <span className='title-section'><FormattedMessage id='homepage.specialty' /> </span>
+                        <button className='btn-section'><FormattedMessage id='homepage.more-info' /></button>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
-                            <div className='section-customize'>
-                                <div className='bg-image    section-specialty'></div>
-                                <h3>Cơ xương khớp</h3>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='bg-image   section-specialty'></div>
-                                <h3>Cơ xương khớp</h3>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='bg-image  section-specialty'></div>
-                                <h3>Cơ xương khớp</h3>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='bg-image section-specialty'></div>
-                                <h3>Cơ xương khớp</h3>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='bg-image section-specialty'></div>
-                                <h3>Cơ xương khớp</h3>
-                            </div>
-                            <div className='section-customize'>
-                                <div className='bg-image section-specialty'></div>
-                                <h3>Cơ xương khớp</h3>
-                            </div>
+                            {dataSpecialty && dataSpecialty.length > 0 &&
+                                dataSpecialty.map((item, index) => {
+                                    return (
+                                        <div className='section-customize' key={index}>
+                                            <div className='bg-image    section-specialty '
+                                                style={{ backgroundImage: `url(${item.image})` }}>
+
+                                            </div>
+                                            <h3>{item.name}</h3>
+                                        </div>
+                                    )
+                                })}
+
+
                         </Slider>
                     </div>
                 </div>
