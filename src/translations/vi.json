@@ -126,7 +126,9 @@
             "address": "Chọn tỉnh thành",
             "name-clinic": "Tên phòng khám",
             "address-clinic": "Địa chỉ phòng khám",
-            "note": "Ghi chú"
+            "note": "Ghi chú",
+            "specialty": "Chọn chuyên khoa",
+            "chooseClinic": "Chọn phòng khám"
         }
     }
 }

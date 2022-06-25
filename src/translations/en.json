@@ -126,7 +126,9 @@
             "address": "Address",
             "name-clinic": "Name clinic",
             "address-clinic": "Address clinic",
-            "note": "Note"
+            "note": "Note",
+            "specialty": "Choose specialty",
+            "chooseClinic": "Choose clinic"
         }
     }
 }
