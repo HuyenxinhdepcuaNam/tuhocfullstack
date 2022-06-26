@@ -155,7 +155,6 @@ class BookingModal extends Component {
         let { language } = this.props
         let { isOpenModalBooking, closeBookingModal, dataTime } = this.props
         let doctorId = dataTime && !_.isEmpty(dataTime) ? dataTime.doctorId : ''
-        console.log('check this.state', dataTime)
         return (
             <React.Fragment>
 
@@ -180,6 +179,8 @@ class BookingModal extends Component {
                                 <ProfileDoctor
                                     doctorId={doctorId}
                                     isShowDescriptionDoctor={false}
+                                    isShowPrice={true}
+                                    isShowLinkDetail={false}
                                     dataTime={dataTime}
                                 />
                             </div>
