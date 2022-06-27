@@ -1,13 +1,13 @@
-.section-specialty {
+.section-medical-facility {
     height    : 330px;
     background: #f5f5f5;
 
-    .specialty-container {
+    .section-container {
         margin        : 0 100px;
         display       : flex;
         flex-direction: column;
 
-        .specialty-header {
+        .section-header {
             height       : 60px;
             margin-bottom: 30px;
             padding-top  : 30px;
@@ -34,11 +34,11 @@
             }
         }
 
-        .specialty-body {
+        .section-body {
 
-            .specialty-customize {
+            .section-customize {
                 .bg-image {
-                    background-image   : url('../../../assets/specialty/co-xuong-khop.jpg');
+                    // background-image   : url('../../../assets/section/co-xuong-khop.jpg');
                     width              : 278px;
                     height             : 150px;
                     background-position: center;
@@ -46,44 +46,12 @@
                     background-size    : cover;
                     background-color   : #d7d7d7;
                 }
-            }
 
-            .slick-prev {
-                border    : 2px solid #d7d7d7 !important;
-                left      : -10px !important;
-                z-index   : 1000 !important;
-                height    : 48px !important;
-                width     : 44px !important;
-                background: #fff !important;
-
-                &:hover {
-                    background: #d7d7d7 !important;
+                h3 {
+                    &:hover {
+                        color: green;
+                    }
                 }
-
-            }
-
-            .slick-prev::before {
-                font-family: FontAwsome !important;
-                color      : red !important;
-            }
-
-            .slick-next {
-                border    : 2px solid #d7d7d7 !important;
-                right     : -10px !important;
-                z-index   : 1000 !important;
-                height    : 48px !important;
-                width     : 44px !important;
-                background: #fff !important;
-
-                &:hover {
-                    background: #d7d7d7 !important;
-                }
-            }
-
-            .slick-next::before {
-                font-family: FontAwsome !important;
-                color      : red !important;
-
             }
         }
     }
